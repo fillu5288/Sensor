@@ -26,8 +26,4 @@ public class DataDTO {
 
     @NotNull(message = "Должен быть указан сенсор!")
     private SensorDTO sensor;
-
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd]")
-    @NotNull(message = "Должно быть написано время")
-    private LocalDateTime created_at;
 }

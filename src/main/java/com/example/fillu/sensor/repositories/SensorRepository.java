@@ -9,8 +9,6 @@ import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
-public interface SensorRepository extends JpaRepository<Sensor, Integer> {
-    Optional<Sensor> findById(int id);
-
+public interface SensorRepository extends JpaRepository<Sensor, String> {
     Optional<Sensor> findByName(String name);
 }

@@ -42,14 +42,10 @@ public class DataController {
     @GetMapping()
     public List<DataDTO> getData() {
         // статус 200, все ок
-        return dataService.findAll().stream()
+        return dataService.findAll()
+                .stream()
                 .map(this::convertToDataDTO)
                 .collect(Collectors.toList()); //джэксон конвертирует в json
-    }
-
-    @GetMapping("/{id}")
-    public DataDTO getData(@PathVariable("id") int id) {
-        return convertToDataDTO(dataService.findOneById(id));
     }
 
     @GetMapping("/rain")
@@ -72,7 +68,7 @@ public class DataController {
         }
 
         Data data = convertToData(dataDTO);
-        data.setSensor(sensorService.findOneByIdOrThrow(data.getSensor().getId()));
+        data.setSensor(sensorService.findOneNameIdOrThrow(data.getSensor().getName()));
         dataService.save(data);
         return ResponseEntity.ok(HttpStatus.OK); // отправляет ок
     }

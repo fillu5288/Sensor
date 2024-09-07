@@ -16,22 +16,14 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class DataService {
     private final DataRepository dataRepository;
-    private final SensorService sensorService;
 
     @Autowired
-    public DataService(DataRepository dataRepository,
-                       SensorService sensorService) {
+    public DataService(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
-        this.sensorService = sensorService;
     }
 
     public List<Data> findAll() {
         return dataRepository.findAll();
-    }
-
-    public Data findOneById(int id) {
-        Optional<Data> foundData = dataRepository.findById(id);
-        return foundData.orElseThrow(DataNotFound::new);
     }
 
     @Transactional

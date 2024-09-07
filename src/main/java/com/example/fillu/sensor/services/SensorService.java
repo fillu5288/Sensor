@@ -24,12 +24,10 @@ public class SensorService {
         return sensorRepository.findAll();
     }
 
-    public Optional<Sensor> findOneName(String name) {
-        return sensorRepository.findByName(name);
-    }
+    public Optional<Sensor> findOneName(String name) {return sensorRepository.findByName(name);}
 
-    public Sensor findOneById(int id) {
-        Optional<Sensor> foundSensor = sensorRepository.findById(id);
+    public Sensor findOneByName(String name) {
+        Optional<Sensor> foundSensor = sensorRepository.findByName(name);
         return foundSensor.orElseThrow(SensorNotFound::new);
     }
 
@@ -38,7 +36,7 @@ public class SensorService {
         sensorRepository.save(sensor);
     }
 
-    public Sensor findOneByIdOrThrow(int id) {
-        return sensorRepository.findById(id).orElseThrow(SensorNotFound::new);
+    public Sensor findOneNameIdOrThrow(String name) {
+        return sensorRepository.findByName(name).orElseThrow(SensorNotFound::new);
     }
 }

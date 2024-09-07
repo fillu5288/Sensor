@@ -43,8 +43,8 @@ public class SensorController {
     }
 
     @GetMapping("/{id}")
-    public SensorDTO getSensor(@PathVariable("id") int id) {
-        return convertToSensorDTO(sensorService.findOneById(id));
+    public SensorDTO getSensor(@PathVariable("id") String name) {
+        return convertToSensorDTO(sensorService.findOneByName(name));
     }
 
     @PostMapping()
